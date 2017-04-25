@@ -11,7 +11,19 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        echo 'hola mundo';
+        $micon = new mysqli("localhost", "root", "avaras08", "datospersonales");
+        
+        if ($micon->connect_errno) {
+        echo "Fallo al conectar a MySQL: (" . $micon->connect_errno . ") " . $micon->connect_error;
+        }
+        echo $micon->host_info . "\n";
+         if($resultado = $micon->query("SELECT * FROM persona"))
+                   echo "La seleccion devolvió #", $resultado->num_rows."filas";
+         
+                   $resultado->close;
+                   
         ?>
+        
+      
     </body>
 </html>
